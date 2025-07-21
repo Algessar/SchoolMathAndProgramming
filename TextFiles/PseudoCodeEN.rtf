@@ -1,0 +1,74 @@
+
+Slumpa fram ett [speltal] mellan 1 till 20
+
+SÅ LÄNGE användaren gissar fel
+	Skriv ut: "Gissa på ett tal mellan 1-20!"
+
+	Användaren skriver in ett [tal]
+
+	OM [tal] är mindre än [speltal]
+
+		Skriv ut: "Du gissade för lågt!"
+
+	OM ANNARS [tal] är större än [speltal]
+
+		Skriv ut: "Du gissade för högt!"
+
+	ANNARS
+
+		Skriv ut: "Du gissade rätt!"
+
+		Avsluta programmet
+
+
+
+
+	Improved pseudo code for improved version below.
+
+
+
+Ask the user to choose between the fixed code of the school example or the improved version
+
+Create a separate method for each version
+
+Generate a random [goalNumber] between 1 and 20
+
+Present the game and goal
+
+Define variables
+
+WHILE the [user] guesses wrong
+
+	PRINT: "Guess a number between 1-20"
+
+	The user writes a [number]
+
+	IF [number] is lower than [goalNumber]
+		PRINT: "You guessed too low"
+
+	IF [number] is bigger than [goalNumber]
+		PRINT: "You guessed too high!"
+
+	IF [number] is the same as [goalNumber]
+		PRINT: "You guessed correctly!"
+
+		Ask the user if they want to play again
+		
+		Tell the user how many guesses it took
+		
+		Tell the user how many rounds they've played
+		
+		Ask the user if they want to continue playing
+		
+		IF yes
+		
+			Clear the Console
+			
+			Generate a new random number
+			
+			Clear the number of guesses
+
+		ELSE
+
+		Exit the game
+		Exit the program

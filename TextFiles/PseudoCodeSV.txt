@@ -1,0 +1,20 @@
+Slumpa fram ett [speltal] mellan 1 till ???
+
+Så länge användaren gissar fel
+	Skriv ut: "Gissa på ett tal mellan 1-20!"
+
+	Användaren skriver in ett [tal]
+
+	OM [tal] är mindre än [speltal]
+
+		Skriv ut: "Du gissade för lågt!"
+
+	om [tal] är större än [speltal]
+
+		Skriv ut: "Du gissade för högt!"
+
+	om [tal] är samma som [speltal]
+
+		Skriv ut: "Du gissade rätt!"
+
+		Avsluta programmet

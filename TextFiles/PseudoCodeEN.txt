@@ -1,0 +1,19 @@
+
+
+Generate a random [goalNumber] between 1 and 20
+
+WHILE the [user] guesses wrong
+	PRINT: "Guess a number between 1-20"
+
+	PRINT the number and ask again
+
+	IF [number] is lower than [goalNumber]
+		PRINT: "You guessed too low"
+
+	IF [number] is bigger than [goalNumber]
+		PRINT: "You guessed too high!"
+
+	IF [number] is the same as [goalNumber]
+		PRINT: "You guessed correctly!"
+
+		Exit the program
