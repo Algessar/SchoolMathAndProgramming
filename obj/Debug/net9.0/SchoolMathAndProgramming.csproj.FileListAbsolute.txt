@@ -12,3 +12,4 @@ G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\refint\SchoolMathAndProgramm
 G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.pdb
 G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.genruntimeconfig.cache
 G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\ref\SchoolMathAndProgramming.dll
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.sourcelink.json
