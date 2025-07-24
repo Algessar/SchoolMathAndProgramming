@@ -26,6 +26,17 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# Visual Studio specific
+.vs/
+*.user
+*.suo
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
 # .NET Core
 project.lock.json
 project.fragment.lock.json
