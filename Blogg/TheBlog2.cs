@@ -26,12 +26,15 @@ namespace SchoolMathAndProgramming
 
         private static void CountSearches()
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            
             if (_numSearches == 0)
             {
-                Console.WriteLine("\tNo searches have been made before.");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\n\tNo searches have been made before.");
                 _numSearches++;
-                Console.WriteLine($"\t\tNumber of searches is now: {_numSearches}");
+                
+
+                Console.WriteLine($"\n\tNumber of searches is now: {_numSearches}");
             }
             else
             {
@@ -44,7 +47,7 @@ namespace SchoolMathAndProgramming
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\n\tWelcome to the amazing Console App blog post creator!\n");
-
+            Console.Clear();
             while (_inMenu && !_isWriting)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -97,6 +100,9 @@ namespace SchoolMathAndProgramming
                                         BinarySearch(_blog, 2);
 
                                         break;
+                                    default:
+                                        Console.WriteLine("\tOther input, returning to menu.");
+                                        break;
                                 }
                             }
                             
@@ -125,7 +131,7 @@ namespace SchoolMathAndProgramming
                             break;
                         case 8:
 
-
+                            Console.ForegroundColor = ConsoleColor.Gray;
                             _inMenu = false;
                             _runApp = false;
 
@@ -137,7 +143,7 @@ namespace SchoolMathAndProgramming
                 }
                 else
                 {
-                    Console.WriteLine($"\tInput was not a number, try again and choose between 1 and {choices.Length}");
+                    Warning($"\tInput was not a number, try again and choose between 1 and {choices.Length}");
                 }
             }
         }
@@ -145,6 +151,7 @@ namespace SchoolMathAndProgramming
         private static void CreatePost()
         {
             Console.Clear();
+            Console.WriteLine();
             _isWriting = true;
             string[] newPost = new string[3];
             while (_isWriting)
@@ -169,6 +176,7 @@ namespace SchoolMathAndProgramming
                 }
 
                 Console.WriteLine("\tWrite your post: \n");
+                Console.Write("\t");
                 newPost[1] = Console.ReadLine();
                 if (string.IsNullOrEmpty(newPost[1]))
                 {
@@ -176,9 +184,11 @@ namespace SchoolMathAndProgramming
 
                     continue;
                 }
-
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("\tDo you want to add a date [1] or not [2]?");
                 bool addingDate = true;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
                 if (TryReadInt(out int value))
                 {
                     switch (value)
@@ -228,9 +238,9 @@ namespace SchoolMathAndProgramming
                 {
                     //Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\nYour post was saved. Returning to menu");
+                    Console.WriteLine("\n\tYour post was saved. Returning to menu");
                     SavePost(newPost);
-                    PrintPosts();
+                    //PrintPosts();
                     _inMenu = true;
                     _isWriting = false;
                     break;
@@ -243,80 +253,15 @@ namespace SchoolMathAndProgramming
 
         }
 
-        static string AddDate()
-        {
-            Console.ForegroundColor = ConsoleColor.Gray;
-            //Console.WriteLine("\tOnly numbers are valid.");
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-
-            /*
-             * What counts as a valid date?
-             * EU (obv): 2025-07-23 
-             * How do I check for this?
-             * I can split input in 3: year/month/date
-             * 
-             * Checks for max (month < 31
-             * 
-             * 
-             * NEVERMIND: I'll just use DateTime instead of being a mupper.
-             */
-            string date = "";
-            int yearSet;
-            int monthSet;
-            int daySet;
-            Console.Write("\tYear: ");
-            if (TryReadInt(out int year))
-            {
-                date += year;
-
-            }
-            Console.Write("\tMonth: ");
-            if (TryReadInt(out int month))
-            {
-
-                date += "-" + month;
-
-            }
-            Console.Write("\tDay: ");
-            if (TryReadInt(out int day))
-            {
-                date += "-" + day;
-            }
-
-            return date;
-        }
-
-        static bool CheckDuplicate(string input)
-        {
-            // Linear search to check all posts
-            int max = _blog.Count;
-            foreach (var title in _blog)
-            {
-                for (int i = 0; i < max; i++)
-                {
-                    if (_blog[i][0] == input)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        private static void SavePost(string[] newPost)
-        {
-            _blog.Add(newPost);
-        }
-
         static void EditPost()
         {
             Console.Clear();
             // User should be able to find a title and write *either* a new title or post.
             // Which means that there needs to be selection by index
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("\tSearch for a post to edit: ");
+            Console.WriteLine("\n\tSearch for a post to edit: ");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            
+
 
             Console.ForegroundColor = ConsoleColor.Yellow;
 
@@ -339,10 +284,14 @@ namespace SchoolMathAndProgramming
                     Console.WriteLine("\tType [1] to edit the title or [2] to edit your post. Type [3] to edit the date: ");
                     if (TryReadInt(out int value))
                     {
+                        
+                        
                         //entered = true;
                         switch (value)
                         {
+                            
                             case 1:
+                                bool running = true;
                                 //Edit Title
                                 //index is the index of the List _blog
 
@@ -352,26 +301,44 @@ namespace SchoolMathAndProgramming
                                 //save the post in a temp variable
                                 var getPost = _blog[index][1];
                                 var getDate = _blog[index][2];
+                                while (running)
+                                {
+                                    Console.Write("\n\tWrite your new title: ");
+                                    newTitle[0] = Console.ReadLine();
+                                
+                                    // Does it matter that this goes back if the title is the same as before?
+                                    if (CheckDuplicate(newTitle[0]))
+                                    {
+                                        Warning("\n\tA title of that name already exists. Try again.");
+                                        
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
 
-                                Console.Write("\tWrite your new title: ");
-                                newTitle[0] = Console.ReadLine();
+                                        running = false;
+                                        break;
+                                    }
+                                }
+                                
                                 newTitle[1] = getPost;
 
                                 _blog[index] = newTitle;
-                                Console.WriteLine($"\tYour new post: Title: {newTitle[0]}, Post: {newTitle[1]}, Date: {newTitle[2]}");
+                                Console.WriteLine($"\n\tYour new post: Title: {newTitle[0]}, Post: {newTitle[1]}, Date: {newTitle[2]}");
 
-                                Console.Write("\tDo you wish to continue editing [1] or go to menu [2]");
+                                Console.Write("\n\tDo you wish to continue editing [1] or go to menu [2]");
                                 if (TryReadInt(out int choice1))
                                 {
                                     // Sub switch to go back and keep editing
                                     switch (choice1)
                                     {
                                         case 1:
-                                            Warning("\tContinuing edit.");
+                                            Warning("\n\tContinuing edit.");
 
                                             continue;
                                         case 2:
-                                            Warning("\tLeaving to menu.");
+                                            Warning("\n\tLeaving to menu.");
                                             _editPost = false;
 
                                             break;
@@ -468,7 +435,7 @@ namespace SchoolMathAndProgramming
                                     }
                                 }
 
-                                Console.WriteLine($"\tYour new post: Title: {newDate[0]}, Post: {newDate[1]}, Date: {newDate[2]}");
+                                Console.WriteLine($"\n\tYour new post: Title: {newDate[0]}, Post: {newDate[1]}, Date: {newDate[2]}");
                                 break;
 
                             default:
@@ -482,31 +449,74 @@ namespace SchoolMathAndProgramming
                         Warning("\tNot a number. Type [0], [1] or [2].");
 
                         continue;
-                    }
-
-                    //entered = false;
-
+                    }                    
                 }
             }
+            Console.Clear();
         }
 
-        private static void PrintPosts()
+        static string AddDate()
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\n\tYour current posts: ");
-            if (_blog.Count > 0)
+            
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            /*
+             * What counts as a valid date?
+             * EU (obv): 2025-07-23 
+             * How do I check for this?
+             * I can split input in 3: year/month/date
+             * 
+             * Checks for max (month < 31
+             * 
+             * 
+             * NEVERMIND: I'll just use DateTime instead of being a mupper.
+             */
+            string date = "";
+            int yearSet;
+            int monthSet;
+            int daySet;
+            Console.Write("\tYear: ");
+            if (TryReadInt(out int year))
             {
-                foreach (string[] post in _blog)
-                {
-                    Console.WriteLine($"\n\tTitle: {post[0]}. Post: {post[1]}. Date: {post[2]}");
-                }
+                date += year;
+
             }
-            else
+            Console.Write("\tMonth: ");
+            if (TryReadInt(out int month))
             {
-                Warning("\tThere are no current posts.");
+
+                date += "-" + month;
+
+            }
+            Console.Write("\tDay: ");
+            if (TryReadInt(out int day))
+            {
+                date += "-" + day;
             }
 
+            return date;
+        }
+
+        static bool CheckDuplicate(string input)
+        {
+            // Linear search to check all posts
+            int max = _blog.Count;
+            foreach (var title in _blog)
+            {
+                for (int i = 0; i < max; i++)
+                {
+                    if (_blog[i][0] == input)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static void SavePost(string[] newPost)
+        {
+            _blog.Add(newPost);
         }
 
         private static int LinearSearch()
@@ -555,6 +565,7 @@ namespace SchoolMathAndProgramming
         //NOTE: Would love a more generic BinarySearch, but that's out of scope.
         static int BinarySearch(List<string[]> listToSearch, int index = 0)
         {
+            Console.Clear();
             /* pseudo-code from textbook
              * 
              * key = value to search for
@@ -574,11 +585,11 @@ namespace SchoolMathAndProgramming
              */
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\tSorting the list.\n");
+            
             BubbleSort();
             CountSearches();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write($"Enter your search key: ");
+            Console.Write($"\n\tEnter your search key: ");
             string key = Console.ReadLine();//
 
             int first = 0;
@@ -601,32 +612,33 @@ namespace SchoolMathAndProgramming
                     //for each iteration, first and last "shrinks", closing in on the key
                     if (string.Compare(key.ToUpper(), listToSearch[mid][index].ToUpper()) > 0)
                     {
-                        Console.WriteLine($"Key: {key} Compare: {string.Compare(key, listToSearch[mid][0])}");
                         // increments first relative to mid with 1
                         first = mid + 1;
-
-                        Console.WriteLine(mid);
                     }
                     else if (string.Compare(key.ToUpper(), listToSearch[mid][index].ToUpper()) < 0)
                     {
-                        Console.WriteLine($"Key: {key} Compare: {string.Compare(key, listToSearch[mid][0])}");
-
                         //decrements last relative to mid
                         last = mid - 1;
-
                     }
                     else
                     {
                         if(index == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine($"\tFound title {listToSearch[mid][index]} from search key {key} at index {mid}");
+                        }                            
                         else if(index == 2)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+
                             Console.WriteLine($"\tFound post created on the date {listToSearch[mid][index]} from search key {key} at index {mid}");
+                        }                           
 
                         return mid;
                     }
                 }
             }
-            Warning("\nTitle not found.");
+            Warning("\n\tTitle not found.");
 
             return -1;
         }
@@ -644,24 +656,8 @@ namespace SchoolMathAndProgramming
                 int index = BinarySearch(_blog); //SearchPosts();
                 Console.Write($"Deleted post at index {index}: ");
                 _blog.RemoveAt(index);
-            }
-            
-
-            
-            //RemovePostByIndex(index);
+            }          
         }
-
-        //private static void RemovePostByIndex(int index)
-        //{
-        //    if(index == -1 || _blog.Count < 1)
-        //    {
-        //        Warning($"No posts to remove");
-        //        return;
-        //    }
-
-        //    Console.Write($"Deleted post at index {index}: ");
-        //    _blog.RemoveAt(index);
-        //}
 
         private static void BubbleSort()
         {
@@ -695,8 +691,31 @@ namespace SchoolMathAndProgramming
                     }
                 }
             }
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\tPosts succesfully sorted!");
             PrintPosts();
+        }
+
+
+        private static void PrintPosts()
+        {
+            //Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\n\tYour current posts: ");
+            if (_blog.Count > 0)
+            {
+                int index = 0;
+                foreach (string[] post in _blog)
+                {
+                    Console.WriteLine($"\n\tTitle: {post[0]}. Post: {post[1]}. Date: {post[2]}");
+                    index++;
+                }
+            }
+            else
+            {
+                Warning("\tThere are no current posts.");
+            }
+
         }
 
         #region Helper methods
@@ -719,18 +738,18 @@ namespace SchoolMathAndProgramming
             return choices;
         }
 
-        static void DisplayTitles()
+        static void DisplayTitles(List<string[]> list)
         {
             Console.WriteLine($"\t Titles of current blog posts: ");
             int index = 0;
-            foreach (var str in _blog)
+            foreach (var str in list)
             {
                 index++;
                 for (int i = 0; i < str.GetLength(0); i++)
                 {
                     if (!string.IsNullOrEmpty(str[i]))
                     {
-                        Console.WriteLine($"[{index}]\t Title: {str[i][0]}");
+                        Console.WriteLine($"[{index}]\t Title: {str[i][0]}, Post: {str[i][1]}, Date: {str[i][2]}");
 
                     }
                 }
@@ -739,6 +758,7 @@ namespace SchoolMathAndProgramming
 
         static bool TryReadInt(out int value)
         {
+            Console.Write("\t");
             string input = Console.ReadLine();
 
             return int.TryParse(input, out value);
@@ -748,7 +768,7 @@ namespace SchoolMathAndProgramming
 
         static void Warning(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(message);
             Console.WriteLine();
         }
@@ -766,6 +786,8 @@ namespace SchoolMathAndProgramming
         {
             var json = JsonSerializer.Serialize(_blog);
             File.WriteAllText("blogEntries.json", json);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Saved to json!");
 
         }
     }

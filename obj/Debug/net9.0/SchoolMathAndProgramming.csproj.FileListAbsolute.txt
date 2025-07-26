@@ -1,0 +1,15 @@
+G:\Coding\SchoolMathAndProgramming\bin\Debug\net9.0\SchoolMathAndProgramming.exe
+G:\Coding\SchoolMathAndProgramming\bin\Debug\net9.0\SchoolMathAndProgramming.deps.json
+G:\Coding\SchoolMathAndProgramming\bin\Debug\net9.0\SchoolMathAndProgramming.runtimeconfig.json
+G:\Coding\SchoolMathAndProgramming\bin\Debug\net9.0\SchoolMathAndProgramming.dll
+G:\Coding\SchoolMathAndProgramming\bin\Debug\net9.0\SchoolMathAndProgramming.pdb
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.GeneratedMSBuildEditorConfig.editorconfig
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.AssemblyInfoInputs.cache
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.AssemblyInfo.cs
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.csproj.CoreCompileInputs.cache
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.sourcelink.json
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.dll
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\refint\SchoolMathAndProgramming.dll
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.pdb
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\SchoolMathAndProgramming.genruntimeconfig.cache
+G:\Coding\SchoolMathAndProgramming\obj\Debug\net9.0\ref\SchoolMathAndProgramming.dll
