@@ -21,6 +21,7 @@ namespace SchoolMathAndProgramming
             while (_runApp)
             {
                 Menu();
+
             }
         }
 
@@ -387,7 +388,7 @@ namespace SchoolMathAndProgramming
 
                                 break;
                             case 3:
-
+                                //Edit date
                                 bool editingDate = true;
                                 string[] newDate = new string[3];
                                 while (editingDate)
@@ -768,7 +769,7 @@ namespace SchoolMathAndProgramming
 
         static void Warning(string message)
         {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.ForegroundColor = ConsoleColor.DarkRed; //Shouldn't this be Red?
             Console.WriteLine(message);
             Console.WriteLine();
         }
