@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolMathAndProgramming")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e705271058c6d2a2b5b08b287d4d4c17321aa949")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0979926327f1eea297cacd808a26ece7e1509d0c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolMathAndProgramming")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolMathAndProgramming")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

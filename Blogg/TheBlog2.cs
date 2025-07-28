@@ -12,8 +12,8 @@ namespace SchoolMathAndProgramming
         public static List<string[]> _blog = new List<string[]>();
         private static bool _runApp = true;
         private static bool _inMenu = true;
-        private static bool _isWriting = false;
-        private static bool _editPost = false;
+        private static bool _isWriting = false; 
+        private static bool _editPost = false; // honestly kinda superfluous. Could use _isWriting for this too.
         private static bool _isSorted = false;
         private static int _numSearches = 0;
 
@@ -40,7 +40,7 @@ namespace SchoolMathAndProgramming
             else
             {
                 _numSearches++;
-                Console.WriteLine($"\t\tNumber of searches is now: {_numSearches}");
+                Console.WriteLine($"\tNumber of searches is now: {_numSearches}");
             }
         }
 
@@ -208,17 +208,28 @@ namespace SchoolMathAndProgramming
                                     
                                     Console.WriteLine($"\tDate is saved to your post. Press enter to go back to menu.");
                                     Console.ReadLine();
+
                                     break;
                                 }
                                 else
                                 {
+                                    // Setting a default date to hinder exception when searching for dates. Any index missing a date causes the exception.
+
+                                    string currentDate = DateTime.Now.ToString();
+                                    newPost[2] = currentDate;
+                                    Console.WriteLine($"\tNo date, entering default current date {currentDate}. Press enter to go back to menu.");
+
                                     Warning("\tInvalid date, try again.");
+
                                     continue;
                                 }
                             }
                             break;
                         case 2:
-                            Console.WriteLine("\tSkipping date. Press enter to go back to menu.");
+                            // Setting a default date to hinder exception when searching for dates. Any index missing a date causes the exception.
+                            string defaultDate = DateTime.Now.ToString();
+                            newPost[2] = defaultDate;
+                            Console.WriteLine($"\tNo date, entering default current date {defaultDate}. Press enter to go back to menu.");
                             Console.ReadLine();
 
                             break;
@@ -231,7 +242,6 @@ namespace SchoolMathAndProgramming
                     
                 }
 
-
                 if (string.IsNullOrEmpty(newPost[0]) || string.IsNullOrEmpty(newPost[1]))
                 {
                     Warning("\t\tTitle or post was empty, try again");
@@ -243,6 +253,13 @@ namespace SchoolMathAndProgramming
                     //Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\n\tYour post was saved. Returning to menu");
+                    if (newPost[2] == null)
+                    {
+                        // Setting a default date to hinder exception when searching for dates. Any index missing a date causes the exception.
+                        string currentDate = DateTime.Now.ToString();
+                        newPost[2] = " ";
+                        Warning($"\tDate is null, setting as current date {currentDate}");
+                    }
                     SavePost(newPost);
                     //PrintPosts();
                     _inMenu = true;
@@ -616,7 +633,7 @@ namespace SchoolMathAndProgramming
                     // if mid is lower, it returns -1
 
                     //for each iteration, first and last "shrinks", closing in on the key
-                    if (string.Compare(key.ToUpper(), listToSearch[mid][index].ToUpper()) > 0) //if one list index doesn't contain a date, it breaks here
+                    if (string.Compare(key.ToUpper(), listToSearch[mid][index].ToUpper()) > 0) //if one list index doesn't contain a date, it breaks here //TODO: find a fix. default date can work.
                     {
                         // increments first relative to mid with 1
                         first = mid + 1;
@@ -644,7 +661,7 @@ namespace SchoolMathAndProgramming
                     }
                 }
             }
-            Warning("\n\tTitle not found.");
+            Warning("\n\tTitle or date not found.");
 
             return -1;
         }
