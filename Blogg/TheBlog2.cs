@@ -14,6 +14,7 @@ namespace SchoolMathAndProgramming
         private static bool _inMenu = true;
         private static bool _isWriting = false;
         private static bool _editPost = false;
+        private static bool _isSorted = false;
         private static int _numSearches = 0;
 
         static void Main(string[] args)
@@ -21,7 +22,6 @@ namespace SchoolMathAndProgramming
             while (_runApp)
             {
                 Menu();
-
             }
         }
 
@@ -102,7 +102,7 @@ namespace SchoolMathAndProgramming
 
                                         break;
                                     default:
-                                        Console.WriteLine("\tOther input, returning to menu.");
+                                        Console.WriteLine("\tInput number not an option, returning to menu.");
                                         break;
                                 }
                             }
@@ -166,6 +166,7 @@ namespace SchoolMathAndProgramming
                 if (string.IsNullOrEmpty(newPost[0]))
                 {
                     Warning("\tTitle or post was empty, try again");
+
                     continue;
                 }
                 else if (CheckDuplicate(newPost[0]))
@@ -219,10 +220,12 @@ namespace SchoolMathAndProgramming
                         case 2:
                             Console.WriteLine("\tSkipping date. Press enter to go back to menu.");
                             Console.ReadLine();
+
                             break;
                         default:
                             Console.WriteLine("\tNot a number or not an option, creating post without a date. Press enter to go back to menu.");
                             Console.ReadLine();
+
                             break;
                     }
                     
@@ -270,9 +273,6 @@ namespace SchoolMathAndProgramming
 
             while (_editPost)
             {
-                //bool entered = false;
-
-
                 if (index == -1)
                 {
                     Warning("\tPost wasn't found. Try again.");
@@ -284,13 +284,9 @@ namespace SchoolMathAndProgramming
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\tType [1] to edit the title or [2] to edit your post. Type [3] to edit the date: ");
                     if (TryReadInt(out int value))
-                    {
-                        
-                        
-                        //entered = true;
+                    {                        
                         switch (value)
-                        {
-                            
+                        {                            
                             case 1:
                                 bool running = true;
                                 //Edit Title
@@ -335,11 +331,11 @@ namespace SchoolMathAndProgramming
                                     switch (choice1)
                                     {
                                         case 1:
-                                            Warning("\n\tContinuing edit.");
+                                            Console.WriteLine("\n\tContinuing edit.");
 
                                             continue;
                                         case 2:
-                                            Warning("\n\tLeaving to menu.");
+                                            Console.WriteLine("\n\tLeaving to menu.");
                                             _editPost = false;
 
                                             break;
@@ -375,13 +371,16 @@ namespace SchoolMathAndProgramming
                                     switch (choice2)
                                     {
                                         case 1:
-                                            Warning("\tContinuing edit.");
+                                            Console.WriteLine("\tContinuing edit.");
 
                                             continue;
                                         case 2:
-                                            Warning("\tLeaving to menu.");
+                                            Console.WriteLine("\tLeaving to menu.");
                                             _editPost = false;
 
+                                            break;
+                                        default:
+                                            
                                             break;
                                     }
                                 }
@@ -584,10 +583,16 @@ namespace SchoolMathAndProgramming
              *      END IF
              *             
              */
+            if (!_isSorted)
+            {
+                Warning("Posts not sorted. Returning to menu.");
+                return -1;
+            }
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             
-            BubbleSort();
+            //Don't auto sort; Prints out all posts, "spoiling" the contents before a search.
+            //BubbleSort();
             CountSearches();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($"\n\tEnter your search key: ");
@@ -611,7 +616,7 @@ namespace SchoolMathAndProgramming
                     // if mid is lower, it returns -1
 
                     //for each iteration, first and last "shrinks", closing in on the key
-                    if (string.Compare(key.ToUpper(), listToSearch[mid][index].ToUpper()) > 0)
+                    if (string.Compare(key.ToUpper(), listToSearch[mid][index].ToUpper()) > 0) //if one list index doesn't contain a date, it breaks here
                     {
                         // increments first relative to mid with 1
                         first = mid + 1;
@@ -623,12 +628,12 @@ namespace SchoolMathAndProgramming
                     }
                     else
                     {
-                        if(index == 0)
+                        if(index == 0) // Check for search on title
                         {
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine($"\tFound title {listToSearch[mid][index]} from search key {key} at index {mid}");
                         }                            
-                        else if(index == 2)
+                        else if(index == 2) // Check for search on date
                         {
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
 
@@ -647,22 +652,27 @@ namespace SchoolMathAndProgramming
         static void RemovePost() 
         {
             Console.Clear();
+            int index = BinarySearch(_blog); //SearchPosts();
+            if (index == -1)
+            {
+                Warning("\tPost not found, returning to menu.");
+                return;
+            }
             if (_blog.Count < 1)
             {
-                Warning("No posts to delete.");
+                Warning("\tNo posts to delete.");
                 return;
-            }            
+            }
             else
             {
-                int index = BinarySearch(_blog); //SearchPosts();
                 Console.Write($"Deleted post at index {index}: ");
+
                 _blog.RemoveAt(index);
             }          
         }
 
         private static void BubbleSort()
         {
-
             /*
              * Pseudo-code from the textbook.
             FOR i = 0 to length of list - 1
@@ -673,13 +683,14 @@ namespace SchoolMathAndProgramming
                     Swap list[j] and list[j+1]                    
             */
 
+
             int max = _blog.Count - 1;
 
             for (int i = 0; i < max; i++)
             {
                 // Decrement titlesLeft so we don't go through the whole list each time (or get stuck I guess?)
                 int titlesLeft = max - i; // Since max is Count -1, this is max - i - 1 so it does match the pseudo code
-                // iterate on
+                // iterate on titles
                 for (int j = 0; j < titlesLeft; j++)
                 {
                     // Comparing the title strings of current list[index] and list[index +1]
@@ -692,8 +703,9 @@ namespace SchoolMathAndProgramming
                     }
                 }
             }
+            _isSorted = true;
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\tPosts succesfully sorted!");
+            Console.WriteLine("\tPosts successfully sorted!");
             PrintPosts();
         }
 
@@ -719,7 +731,7 @@ namespace SchoolMathAndProgramming
 
         }
 
-        #region Helper methods
+#region Helper methods
 
         /// <summary>
         /// Displays an array of numbered menu options to the console. The params argument allows for "option1, option2" as input instead of an array.
@@ -765,8 +777,6 @@ namespace SchoolMathAndProgramming
             return int.TryParse(input, out value);
         }
 
-
-
         static void Warning(string message)
         {
             Console.ForegroundColor = ConsoleColor.DarkRed; //Shouldn't this be Red?
@@ -791,9 +801,10 @@ namespace SchoolMathAndProgramming
             Console.WriteLine("Saved to json!");
 
         }
+#endregion
     }
 
-    #endregion
+
 }
 
 
