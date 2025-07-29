@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "G:\\Coding\\SchoolMathAndProgramming\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{03568A21-AB91-44F5-A259-08E53697ABDE}|SchoolMathAndProgramming.csproj|g:\\coding\\schoolmathandprogramming\\blogg\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03568A21-AB91-44F5-A259-08E53697ABDE}|SchoolMathAndProgramming.csproj|solutionrelative:blogg\\blogpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03568A21-AB91-44F5-A259-08E53697ABDE}|SchoolMathAndProgramming.csproj|g:\\coding\\schoolmathandprogramming\\blogg\\blog3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03568A21-AB91-44F5-A259-08E53697ABDE}|SchoolMathAndProgramming.csproj|solutionrelative:blogg\\blog3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{03568A21-AB91-44F5-A259-08E53697ABDE}|SchoolMathAndProgramming.csproj|g:\\coding\\schoolmathandprogramming\\blogg\\theblog2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03568A21-AB91-44F5-A259-08E53697ABDE}|SchoolMathAndProgramming.csproj|solutionrelative:blogg\\theblog2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,19 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 303,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "TheBlog2.cs",
               "DocumentMoniker": "G:\\Coding\\SchoolMathAndProgramming\\Blogg\\TheBlog2.cs",
               "RelativeDocumentMoniker": "Blogg\\TheBlog2.cs",
               "ToolTip": "G:\\Coding\\SchoolMathAndProgramming\\Blogg\\TheBlog2.cs",
               "RelativeToolTip": "Blogg\\TheBlog2.cs",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAIwPUAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAQwMgAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T16:18:31.174Z",
+              "WhenOpened": "2025-07-28T18:42:05.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Blog3.cs",
+              "DocumentMoniker": "G:\\Coding\\SchoolMathAndProgramming\\Blogg\\Blog3.cs",
+              "RelativeDocumentMoniker": "Blogg\\Blog3.cs",
+              "ToolTip": "G:\\Coding\\SchoolMathAndProgramming\\Blogg\\Blog3.cs",
+              "RelativeToolTip": "Blogg\\Blog3.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAqwJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T18:32:28.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BlogPost.cs",
+              "DocumentMoniker": "G:\\Coding\\SchoolMathAndProgramming\\Blogg\\BlogPost.cs",
+              "RelativeDocumentMoniker": "Blogg\\BlogPost.cs",
+              "ToolTip": "G:\\Coding\\SchoolMathAndProgramming\\Blogg\\BlogPost.cs",
+              "RelativeToolTip": "Blogg\\BlogPost.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAcwBkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T18:32:12.975Z",
               "EditorCaption": ""
             }
           ]

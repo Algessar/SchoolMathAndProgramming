@@ -6,7 +6,6 @@ namespace SchoolMathAndProgramming
     using System.Collections.Generic;
     using System.Text.Json;
 
-    //TODO: Remove auto PrintPosts();
     internal class TheBlog2
     {
         public static List<string[]> _blog = new List<string[]>();
@@ -17,13 +16,13 @@ namespace SchoolMathAndProgramming
         private static bool _isSorted = false;
         private static int _numSearches = 0;
 
-        static void Main(string[] args)
-        {
-            while (_runApp)
-            {
-                Menu();
-            }
-        }
+        //static void Main(string[] args)
+        //{
+        //    while (_runApp)
+        //    {
+        //        Menu();
+        //    }
+        //}
 
         private static void CountSearches()
         {
@@ -286,6 +285,12 @@ namespace SchoolMathAndProgramming
 
             Console.ForegroundColor = ConsoleColor.Yellow;
 
+            string a = Console.ReadLine();
+            foreach (string[] b in _blog)
+            {
+                int testIndex = _blog.BinarySearch(b);
+
+            }
             int index = BinarySearch(_blog);
 
             while (_editPost)
